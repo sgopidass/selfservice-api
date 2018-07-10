@@ -1,0 +1,197 @@
+{
+    "swagger":"2.0",
+    "info":{
+        "title":"Self Service Library API",
+        "description":" Beginners Guide to build an API Service",
+        "version":"2.0.0"
+    },
+    "schemes": [
+        "http"
+      ],
+      "host":"localhost:3000",
+      "tags":[
+          {"name":"Books",
+            "description":"Everything about books"
+          },
+          {"name":"Authors",
+            "description":"Everything about Authors"
+          }
+    ],
+      "basePath": "/",
+      "produces": [
+        "application/json"
+      ],
+      "paths":{
+          "/books":{
+            "x-swagger-router-controller":"books.controller",
+              "get":{
+                  "summary":"get details of specific books"
+                ,"operationId":"getBooks"
+                 , "parameters": [
+                    {
+                      "name": "bookId",
+                      "in": "query",
+                      "type": "string"
+                      
+                    }
+                ],
+                "tags":["Books"],
+                "responses": {
+                    "200": {
+                      "description": "An array of books",
+                      "schema": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/definitions/Books"
+                        }
+                      }
+                    },
+                    "default": {
+                      "description": "Unexpected error",
+                      "schema": {
+                        "$ref": "#/definitions/Error"
+                      }
+                    }
+                  }
+                  }
+         
+      },
+
+      "/authors":{
+        "x-swagger-router-controller":"authors.controller",
+          "get":{
+              "summary":"get details of specific authors"
+            ,"operationId":"getAuthors"
+             , "parameters": [
+                {
+                  "name": "authorId",
+                  "in": "query",
+                  "type": "string"
+                  
+                }
+            ],
+            "tags":["Authors"],
+            "responses": {
+                "200": {
+                  "description": "An array of Authors",
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/Authors"
+                    }
+                  }
+                },
+                "default": {
+                  "description": "Unexpected error",
+                  "schema": {
+                    "$ref": "#/definitions/Error"
+                  }
+                }
+              }
+              }
+     
+  },
+  "/publishers":{
+    "x-swagger-router-controller":"publishers.controller",
+      "get":{
+          "summary":"get details of specific publishers"
+        ,"operationId":"getPublishers"
+         , "parameters": [
+            {
+              "name": "name",
+              "in": "query",
+              "type": "string"
+              
+            }
+        ],
+        "tags":["Publishers"],
+        "responses": {
+            "200": {
+              "description": "An array of Publishers",
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/Publishers"
+                }
+              }
+            },
+            "default": {
+              "description": "Unexpected error",
+              "schema": {
+                "$ref": "#/definitions/Error"
+              }
+            }
+          }
+          }
+ 
+}
+    },
+    "definitions": {
+        "Books": {
+          "type": "object",
+          "properties": {
+            "book_id": {
+              "type": "string",
+              "description": "Unique identifier representing a specific Book"
+            },
+            "book_name": {
+              "type": "string",
+              "description": "Display name of product."
+            },
+            "author": {
+              "type": "string",
+              "description": "Capacity of product. For example, 4 people."
+            }
+          }
+        },
+        "Authors": {
+          "type": "object",
+          "properties": {
+            "author_id": {
+              "type": "string",
+              "description": "Unique identifier representing a specific author"
+            },
+            "author_name": {
+              "type": "string",
+              "description": "Display name of author."
+            },
+            "country": {
+              "type": "string",
+              "description": "Country of location of Author"
+            }
+          }
+        },
+        "Publishers": {
+          "type": "object",
+          "properties": {
+            "currency": {
+              "type": "string",
+              "description": "currency of publishers"
+            },
+            "publisher_name": {
+              "type": "string",
+              "description": "Display name of publisher."
+            },
+            "country": {
+              "type": "string",
+              "description": "Country of location of Author"
+            }
+          }
+        },
+        "Error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "integer",
+                "format": "int32"
+              },
+              "message": {
+                "type": "string"
+              },
+              "fields": {
+                "type": "string"
+              }
+            }
+          }
+        }
+}

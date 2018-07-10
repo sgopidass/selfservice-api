@@ -1,0 +1,14 @@
+# Dependency directories
+node_modules/
+# dotenv environment variables file
+.env
+#logs written in proj root
+.log
+#vscode info
+.vscode/
+#eslint
+.eslintrc.js
+package-lock.json
+
+#log files
+*.log
